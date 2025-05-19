@@ -1,0 +1,20 @@
+input.error,
+textarea.error,
+select.error {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+
+input.success,
+textarea.success,
+select.success {
+  border: 2px solid green;
+  background-color: #e6ffe6;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 2px;
+  display: block;
+}

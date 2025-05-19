@@ -2,13 +2,21 @@
   <h2>Registrar nueva moto</h2>
   <form id="form-registro">
     <input type="text" id="nombre" placeholder="Nombre del cliente" required />
-    <input type="text" id="cedula" placeholder="Cédula" required />
-    <input type="text" id="telefono" placeholder="Teléfono" required />
+    <span class="error-msg" id="error-nombre"></span>
+    <input type="number" id="cedula" placeholder="Cédula" required />
+    <span class="error-msg" id="error-cedula"></span>
+    <input type="number" id="telefono" placeholder="Teléfono" required />
+    <span class="error-msg" id="error-telefono"></span>
     <input type="email" id="correo" placeholder="Correo electrónico" required />
+    <span class="error-msg" id="error-correo"></span>
     <input type="text" id="placa" placeholder="Placa" required />
+    <span class="error-msg" id="error-placa"></span>
     <input type="text" id="chasis" placeholder="Chasis" required />
+    <span class="error-msg" id="error-chasis"></span>
     <input type="number" id="kilometraje" placeholder="Kilometraje" required />
+    <span class="error-msg" id="error-kilometraje"></span>
     <input type="text" id="tipo" placeholder="Tipo de motocicleta" required />
+    <span class="error-msg" id="error-tipo"></span>
 
     <label for="trabajo">Trabajo solicitado</label>
     <input type="text" id="trabajo" list="opciones-trabajo" placeholder="Escriba o seleccione" required />
