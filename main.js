@@ -9,7 +9,7 @@ function loadView(name) {
   const container = document.getElementById('app');
 
   if (!route) {
-    container.innerHTML = '<p>Vista no disponible.</p>';
+    container.innerHTML = `<p>Vista "${name}" no disponible.</p>`;
     return;
   }
 
@@ -17,19 +17,22 @@ function loadView(name) {
     .then(res => res.text())
     .then(html => {
       container.innerHTML = html;
-      if (route.js) import(`./${route.js}`).then(m => m.init());
+      if (route.js) import(`./${route.js}`).then(m => m.init?.());
     })
     .catch(() => {
-      container.innerHTML = '<p>Error al cargar la vista.</p>';
+      container.innerHTML = `<p>Error al cargar la vista "${name}".</p>`;
     });
 }
 
-// Cargar el menú de navegación UNA SOLA VEZ
+// Exponer al global
+window.loadView = loadView;
+
+// Cargar el menú una vez
 fetch('views/menu.html')
   .then(res => res.text())
   .then(html => {
     document.getElementById('menu-principal').innerHTML = html;
   });
 
-// Por defecto muestra la vista "registrar"
-loadView("registrar");
+// Cargar vista por defecto
+loadView('registrar');
