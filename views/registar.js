@@ -42,16 +42,29 @@ export function init() {
     }
   });
 
-  async function submitToAPI(data) {
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    async function submitToAPI(data) {
+    try {
+      // Convertir kilometraje a número real
+      data.kilometraje = Number(data.kilometraje);
 
-    if (res.ok) {
-      alert("Moto registrada correctamente");
-      form.reset();
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        alert("✅ Moto registrada correctamente");
+        form.reset();
+      } else {
+        const msg = await res.text();
+        console.error("❌ Error al guardar:", msg);
+        alert("❌ Error al guardar la moto:\n" + msg);
+      }
+    } catch (error) {
+      console.error("❌ Error de red:", error);
+      alert("❌ No se pudo conectar con el servidor.\nRevisa tu conexión o intenta más tarde.");
     }
   }
+
 }
