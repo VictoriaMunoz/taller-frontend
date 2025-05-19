@@ -1,0 +1,25 @@
+<section>
+  <h2>Registrar nueva moto</h2>
+  <form id="form-registro">
+    <input type="text" id="nombre" placeholder="Nombre del cliente" required />
+    <input type="text" id="cedula" placeholder="Cédula" required />
+    <input type="text" id="telefono" placeholder="Teléfono" required />
+    <input type="email" id="correo" placeholder="Correo electrónico" required />
+    <input type="text" id="placa" placeholder="Placa" required />
+    <input type="text" id="chasis" placeholder="Chasis" required />
+    <input type="number" id="kilometraje" placeholder="Kilometraje" required />
+    <input type="text" id="tipo" placeholder="Tipo de motocicleta" required />
+
+    <label for="trabajo">Trabajo solicitado</label>
+    <input type="text" id="trabajo" list="opciones-trabajo" placeholder="Escriba o seleccione" required />
+    <datalist id="opciones-trabajo">
+      <option value="Cambio de aceite" />
+      <option value="Revisión de frenos" />
+      <option value="Ajuste de válvulas" />
+    </datalist>
+
+    <textarea id="observaciones" placeholder="Observaciones"></textarea>
+    <input type="file" id="fotos" multiple accept="image/*" />
+    <button type="submit">Guardar</button>
+  </form>
+</section>
