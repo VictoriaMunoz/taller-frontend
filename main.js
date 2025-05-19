@@ -1,29 +1,35 @@
 const routes = {
-  menu: { html: 'views/menu.html' },
   registrar: { html: 'views/registrar.html', js: 'views/registrar.js' },
   taller: { html: 'views/taller.html', js: 'views/taller.js' },
   eliminar: { html: 'views/eliminar.html', js: 'views/eliminar.js' },
 };
 
 function loadView(name) {
-  const { html, js } = routes[name] || {};
+  const route = routes[name];
   const container = document.getElementById('app');
-  if (!html) return (container.innerHTML = '<p>Error al cargar la vista.</p>');
 
-  fetch(html)
+  if (!route) {
+    container.innerHTML = '<p>Vista no disponible.</p>';
+    return;
+  }
+
+  fetch(route.html)
     .then(res => res.text())
-    .then(htmlContent => {
-      container.innerHTML = htmlContent;
-      if (js) import(`./${js}`).then(mod => mod.init());
+    .then(html => {
+      container.innerHTML = html;
+      if (route.js) import(`./${route.js}`).then(m => m.init());
     })
-    .catch(() => (container.innerHTML = '<p>Error al cargar la vista.</p>'));
+    .catch(() => {
+      container.innerHTML = '<p>Error al cargar la vista.</p>';
+    });
 }
 
-window.loadView = loadView;
-
-// Cargar menú al inicio
+// Cargar el menú de navegación UNA SOLA VEZ
 fetch('views/menu.html')
   .then(res => res.text())
   .then(html => {
     document.getElementById('menu-principal').innerHTML = html;
   });
+
+// Por defecto muestra la vista "registrar"
+loadView("registrar");
